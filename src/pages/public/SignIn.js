@@ -1,5 +1,5 @@
 import Input from '../../components/Form/Input';
-import Button from '../../components/Form/Button';
+import FormButton from '../../components/Form/FormButton';
 import TitleMyWallet from '../../components/TitleMyWallet';
 import Form from '../../components/Form/Form';
 import ViewAuthentication from '../../components/ViewAuthentication';
@@ -32,7 +32,7 @@ export default function SignIn() {
 					value={password}
 					onChange={e => setPassword(e.target.value)}
 				/>
-				<Button type="submit">Entrar</Button>
+				<FormButton type="submit">Entrar</FormButton>
 				<p onClick={() => history.push("/sign-up")}>Primeira vez? Cadastre-se!</p>
 			</Form>
 		</ViewAuthentication>

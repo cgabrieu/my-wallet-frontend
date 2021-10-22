@@ -1,5 +1,5 @@
 import Input from '../../components/Form/Input';
-import Button from '../../components/Form/Button';
+import FormButton from '../../components/Form/FormButton';
 import TitleMyWallet from '../../components/TitleMyWallet';
 import Form from '../../components/Form/Form';
 import ViewAuthentication from '../../components/ViewAuthentication';
@@ -56,7 +56,7 @@ export default function SignUp() {
 					value={inputFields.confirmPassword}
 					onChange={handleChangeInputs}
 				/>
-				<Button type="submit">Cadastrar</Button>
+				<FormButton type="submit">Cadastrar</FormButton>
 				<p onClick={() => history.push("/sign-in")}>Já tem uma conta? Entre agora!</p>
 			</Form>
 		</ViewAuthentication>

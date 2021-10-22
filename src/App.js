@@ -7,6 +7,7 @@ import {
 
 import SignIn from './pages/public/SignIn';
 import SignUp from './pages/public/SignUp';
+import Wallet from './pages/private/Wallet';
 
 import './assets/styles/reset.css';
 import './assets/styles/style.css';
@@ -20,6 +21,9 @@ export default function App() {
         </Route>
         <Route path="/sign-up" exact>
           <SignUp />
+        </Route>
+        <Route path="/" exact>
+          <Wallet />
         </Route>
       </Switch>
     </Router>
