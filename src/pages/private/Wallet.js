@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 import { IoMdExit, IoIosAddCircleOutline, IoIosRemoveCircleOutline } from 'react-icons/io';
 
+import { useHistory } from 'react-router';
+
 import PageContainer from '../../components/PageContainer';
 import TitlePage from '../../components/TitlePage';
 import Button from '../../components/Button';
 
 export default function Wallet() {
+    const history = useHistory();
 
     let list = [];
 
@@ -32,11 +35,11 @@ export default function Wallet() {
                 }
             </LogsContainer>
             <ButtonContainer>
-                <WalletButton>
+                <WalletButton onClick={() => history.push("/new-input")}>
                     <IoIosAddCircleOutline />
                     Nova entrada
                 </WalletButton>
-                <WalletButton>
+                <WalletButton onClick={() => history.push("/new-output")}>
                     <IoIosRemoveCircleOutline />
                     Nova saída
                 </WalletButton>
