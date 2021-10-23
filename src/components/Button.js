@@ -12,6 +12,7 @@ export default styled.button`
   font-size: 20px;
 
   @media(max-width: 326px) {
-    width: 95%;
+    width: 100%;
+    border-radius: 0px;
   }
 `;

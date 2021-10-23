@@ -60,6 +60,7 @@ const WalletButton = styled(Button)`
     padding: 10px;
     padding-right: 60px;
     text-align: left;
+    border-radius: 5px;
     svg {
         font-size: 25px;
     }

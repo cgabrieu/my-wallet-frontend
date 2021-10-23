@@ -8,4 +8,5 @@ export default styled.h1`
     color: #FFFFFF;
     font-weight: bold;
 	justify-content: space-between;
+    padding-left: 10px;
 `;
