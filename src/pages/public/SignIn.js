@@ -5,15 +5,29 @@ import Form from '../../components/Form/Form';
 import ViewAuthentication from '../../components/ViewAuthentication';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
+import { useAuth } from '../../contexts/AuthContext';
+import { postSignIn } from '../../services/api/sign-in';
+
 
 export default function SignIn() {
 	const history = useHistory();
+
+	const { user, setUser } = useAuth();
+
+	console.log("Token: ", user);
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
 	function submit(event) {
 		event.preventDefault();
+		postSignIn(email, password)
+			.then((res) => {
+				console.log(res);
+				setUser(res);
+				localStorage.setItem('user', JSON.stringify(res));
+				history.push("/");
+			});
 	}
 
 	return (

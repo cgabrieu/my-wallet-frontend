@@ -1,9 +1,6 @@
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
-} from 'react-router-dom';
+import React from 'react';
+import { useAuth } from './contexts/AuthContext';
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
 import SignIn from './pages/public/SignIn';
 import SignUp from './pages/public/SignUp';
@@ -15,25 +12,26 @@ import './assets/styles/reset.css';
 import './assets/styles/style.css';
 
 export default function App() {
-  return (
-    <Router>
-      <Switch>
-        <Route path="/sign-in" exact>
-          <SignIn />
-        </Route>
-        <Route path="/sign-up" exact>
-          <SignUp />
-        </Route>
-        <Route path="/" exact>
-          <Wallet />
-        </Route>
-        <Route path="/new-input" exact>
-          <NewInput />
-        </Route>
-        <Route path="/new-output" exact>
-          <NewOutput />
-        </Route>
-      </Switch>
-    </Router>
-  );
+	const { user } = useAuth();
+
+	return (
+		<Router>
+			<Switch>
+				{!user ?
+					<Switch>
+						<Route component={SignUp} path="/sign-up" exact />
+						<Route component={SignIn} path="/sign-in" exact />
+						<Redirect to="/sign-in" />
+					</Switch> :
+					<Switch>
+						<Route component={Wallet} path="/" exact />
+						<Route component={NewInput} path="/new-input" exact />
+						<Route component={NewOutput} path="/new-output" exact />
+						<Redirect to="/" />
+					</Switch>
+				}
+			</Switch>
+		</Router>
+	);
+
 }

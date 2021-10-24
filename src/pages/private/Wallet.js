@@ -6,8 +6,12 @@ import { useHistory } from 'react-router';
 import PageContainer from '../../components/PageContainer';
 import TitlePage from '../../components/TitlePage';
 import Button from '../../components/Button';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function Wallet() {
+
+    const { logout } = useAuth();
+
     const history = useHistory();
 
     let list = [];
@@ -16,7 +20,9 @@ export default function Wallet() {
         <PageContainer>
             <TitlePage>
                 Olá, Fulano
-                <IoMdExit />
+                <IoMdExit 
+                    onClick={() => logout()}
+                />
             </TitlePage>
             <LogsContainer>
                 {(list.length) ?

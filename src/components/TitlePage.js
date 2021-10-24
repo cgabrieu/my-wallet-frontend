@@ -9,4 +9,7 @@ export default styled.h1`
     font-weight: bold;
 	justify-content: space-between;
     padding-left: 10px;
+    svg {
+        cursor: pointer;
+    }
 `;
