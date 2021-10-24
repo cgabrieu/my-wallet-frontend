@@ -1,6 +1,3 @@
-import styled from 'styled-components';
-import { IoMdExit, IoIosAddCircleOutline, IoIosRemoveCircleOutline } from 'react-icons/io';
-
 import { useState } from 'react';
 import View from '../../components/View';
 import TitlePage from '../../components/TitlePage';

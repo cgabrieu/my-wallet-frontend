@@ -12,25 +12,25 @@ import './assets/styles/reset.css';
 import './assets/styles/style.css';
 
 export default function App() {
-	const { user } = useAuth();
+	const { user, logout } = useAuth();
 
 	return (
 		<Router>
-			<Switch>
-				{!user ?
-					<Switch>
-						<Route component={SignUp} path="/sign-up" exact />
-						<Route component={SignIn} path="/sign-in" exact />
-						<Redirect to="/sign-in" />
-					</Switch> :
-					<Switch>
-						<Route component={Wallet} path="/" exact />
-						<Route component={NewInput} path="/new-input" exact />
-						<Route component={NewOutput} path="/new-output" exact />
-						<Redirect to="/" />
-					</Switch>
-				}
-			</Switch>
+			{!user ?
+				<Switch>
+					<Route component={SignUp} path="/sign-up" exact />
+					<Route component={SignIn} path="/sign-in" exact />
+					<Redirect to="/sign-in" />
+				</Switch> :
+				<Switch>
+					<Route path="/" exact>
+						<Wallet user={user} logout={logout} />
+					</Route>
+					<Route component={NewInput} path="/new-input" exact />
+					<Route component={NewOutput} path="/new-output" exact />
+					<Redirect to="/" />
+				</Switch>
+			}
 		</Router>
 	);
 

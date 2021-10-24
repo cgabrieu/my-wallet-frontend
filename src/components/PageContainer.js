@@ -10,6 +10,6 @@ export default function PageContainer({ children }) {
 
 
 const Container = styled.div`
-  padding: 20px;
+  padding: 20px 15px 5px 15px;
   height: 100%;
 `;

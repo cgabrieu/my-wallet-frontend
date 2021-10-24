@@ -1,37 +1,29 @@
-import axios from 'axios';
+import axios from "axios";
 
-const methods = [
-  'get',
-  'post',
-  'put',
-  'delete'
-];
+const BASE_URL = 'http://localhost:4000/api';
 
-const axiosWrapper = {};
-
-const queryStringBuilder = query => Object.keys(query).length ? '?' + Object.keys(query).map(k => `${k}=${query[k]}`).join('&') : '';
-
-const instance = axios.create({
-  baseURL: 'http://localhost:4000'
-});
-
-for (const method of methods) {
-  axiosWrapper[method] = async function (route, body, query = {}, complete = false) {
-    try {
-      const url = `${route}${queryStringBuilder(query)}`;
-
-      const request = await instance({
-        method,
-        url,
-        data: body
-      });
-
-      return complete ? request : request.data;
-    } catch (err) {
-      console.error(err);
-      return Promise.reject(err.response);
-    }
-  }
+function getConfig(token) {
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 }
 
-export default axiosWrapper;
+export function postSignIn(email, password) {
+  return axios.post(BASE_URL + '/auth/signin', {
+    email,
+    password
+  });
+}
+
+export function getTransactions(token) {
+  return axios.get(BASE_URL + '/transactions', getConfig(token));
+}
+
+export function postNewTransaction(value, description, token) {
+  return axios.post(BASE_URL + '/transactions', {
+    description,
+    value
+  }, getConfig(token));
+}
