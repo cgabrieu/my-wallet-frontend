@@ -37,7 +37,6 @@ export default function SignUp() {
 				history.push("/sign-in");
 			}).catch((err) => {
 				setIsLoading(false);
-				console.log(err.response)
 				setErrorMessage(err.response.data);
 			});
 	}

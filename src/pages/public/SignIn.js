@@ -28,7 +28,7 @@ export default function SignIn() {
 				setIsLoading(false);
 				history.push("/");
 			}).catch((err) => {
-				setErrorMessage(err.response.data);
+				setErrorMessage(err.response?.data);
 				setIsLoading(false);
 			});
 	}

@@ -10,7 +10,7 @@ const Form = styled.form`
     font-weight: bold;
     font-size: 15px;
     color: #FFF;
-    padding: 30px;
+    margin: 30px;
     cursor: pointer;
   }
 

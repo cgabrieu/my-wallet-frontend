@@ -7,7 +7,7 @@ export const formatBRLInput = (value) => {
     if (valor.length > 6) {
         valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
     }
-    if(valor == 'NaN') return '';
+    if(valor === 'NaN') return '';
     return "R$ " + valor;
 }
 
