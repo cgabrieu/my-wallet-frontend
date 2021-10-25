@@ -32,10 +32,8 @@ export default function SignUp() {
 			return;
 		}
 		postSignUp(inputFields)
-			.then((res) => {
-				console.log(res);
-				history.push("/sign-in");
-			}).catch((err) => {
+			.then(() => history.push("/sign-in"))
+			.catch((err) => {
 				setIsLoading(false);
 				setErrorMessage(err.response.data);
 			});

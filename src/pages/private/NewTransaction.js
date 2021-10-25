@@ -13,11 +13,16 @@ export default function NewTransaction({ user, type }) {
     const [value, setValue] = useState("");
     const [description, setDescription] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
+	const [errorMessage, setErrorMessage] = useState('');
 
     const history = useHistory();
 
     function submit(event) {
         event.preventDefault();
+        if (formatTransactionValue(value) === 0) {
+            setErrorMessage("O valor precisa ser maior que zero.")
+            return;
+        }
 		setIsLoading(true);
         postNewTransaction(formatTransactionValue(value), description, user.token)
             .then(() => {
@@ -28,8 +33,8 @@ export default function NewTransaction({ user, type }) {
 
     const formatTransactionValue = (value) => {
         const clearValue = value.replace("R$ ", "").replaceAll(".","").replaceAll(",", "");
-        if (type === "Entrada") return clearValue;
-        else return clearValue*(-1);
+        if (type === "Entrada") return parseInt(clearValue);
+        else return parseInt(clearValue)*(-1);
     }
 
     return (
@@ -39,6 +44,7 @@ export default function NewTransaction({ user, type }) {
             </TitlePage>
             <Form onSubmit={submit}>
                 <Input
+                    required
                     placeholder="Valor"
                     type="text"
                     maxLength="13"
@@ -46,12 +52,16 @@ export default function NewTransaction({ user, type }) {
                     onChange={e => setValue(e.target.value)}
                 />
                 <Input
+                    required
                     placeholder="Descrição"
                     type="text"
                     maxLength="20"
                     value={description}
                     onChange={e => setDescription(e.target.value)}
                 />
+                {errorMessage && (
+					<span> {errorMessage} </span>
+				)}
                 <FormButton type="submit" isLoading={isLoading}>
                     Salvar {type}
                 </FormButton>
