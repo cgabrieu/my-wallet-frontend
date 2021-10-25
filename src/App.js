@@ -5,8 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import SignIn from './pages/public/SignIn';
 import SignUp from './pages/public/SignUp';
 import Wallet from './pages/private/Wallet';
-import NewInput from './pages/private/NewInput';
-import NewOutput from './pages/private/NewOutput';
+import NewTransaction from './pages/private/NewTransaction';
 
 import './assets/styles/reset.css';
 import './assets/styles/style.css';
@@ -26,8 +25,12 @@ export default function App() {
 					<Route path="/" exact>
 						<Wallet user={user} logout={logout} />
 					</Route>
-					<Route component={NewInput} path="/new-input" exact />
-					<Route component={NewOutput} path="/new-output" exact />
+					<Route path="/new-input" exact>
+						<NewTransaction user={user} type={"Entrada"} />
+					</Route>
+					<Route path="/new-output" exact>
+						<NewTransaction user={user} type={"Saída"} />
+					</Route>
 					<Redirect to="/" />
 				</Switch>
 			}

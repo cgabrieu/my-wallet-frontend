@@ -17,6 +17,10 @@ export function postSignIn(email, password) {
   });
 }
 
+export function postSignUp(inputFields) {
+  return axios.post(BASE_URL + '/auth/signup', inputFields);
+}
+
 export function getTransactions(token) {
   return axios.get(BASE_URL + '/transactions', getConfig(token));
 }

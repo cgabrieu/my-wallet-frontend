@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { IoMdExit, IoIosAddCircleOutline, IoIosRemoveCircleOutline } from 'react-icons/io';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
@@ -8,31 +8,18 @@ import PageContainer from '../../components/PageContainer';
 import TitlePage from '../../components/TitlePage';
 import Button from '../../components/Button';
 import { getTransactions } from '../../services/api/api';
+import { formatBRL } from '../../utils/formatCurrencies';
 
 export default function Wallet({ user, logout }) {
     const history = useHistory();
 
     const [transactions, setTransactions] = useState([]);
-    const [balance, setBalance] = useState(0);
-
+    
     useEffect(() => {
         getTransactions(user.token)
-            .then((res) => {
-                console.log(res.data);
-                setTransactions(res.data);
-            }).then(() => {
-                if (transactions.length)
-                    setBalance(transactions.map((t) => t.value).reduce((a,b) => a+b));
-                else setBalance(0);
-            });
-    }, []);
-
-    const toLocaleValue = (value) => {
-        return (value*0.01).toLocaleString(
-            'pt-BR',
-            { style: 'currency', currency: 'BRL' });
-    };
-
+            .then((res) => setTransactions(res.data));
+        }, []);
+        
     return (
         <PageContainer>
             <TitlePage>
@@ -54,14 +41,18 @@ export default function Wallet({ user, logout }) {
                                         <h4>{t.description}</h4>
                                     </div>
                                     <Valor positive={t.value > 0}>
-                                        {toLocaleValue(t.value)}
+                                        {formatBRL(t.value)}
                                     </Valor>
                                 </Item>
                             )}
                         </Content>
-                        <WalletBalance positive={balance > 0}>
+                        <WalletBalance 
+                            positive={transactions.map((t) => t.value).reduce((a,b) => a+b) > 0}
+                        >
                             <b>SALDO</b>
-                            <span>{toLocaleValue(balance)}</span>
+                            <span>
+                                {formatBRL(transactions.map((t) => t.value).reduce((a,b) => a+b))}
+                            </span>
                         </WalletBalance>
                     </> :
                     <NoDataInfo>
@@ -107,7 +98,7 @@ const WalletButton = styled(Button)`
 const NoDataInfo = styled.div`
     font-size: 20px;
     color: #868686;
-    min-height: 500px;
+    min-height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -168,5 +159,6 @@ const WalletBalance = styled.div`
     }
     span {
         color: ${props => props.positive ? "#03AC00" : "#C70000"};
+        font-weight: bold;
     }
 `;

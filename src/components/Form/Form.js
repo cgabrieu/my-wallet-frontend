@@ -14,6 +14,12 @@ const Form = styled.form`
     cursor: pointer;
   }
 
+  span {
+    font-weight: bold;
+    color: #FFFFFF;
+    margin-bottom: 7px;
+  }
+
 `;
 
 export default Form;

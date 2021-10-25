@@ -16,6 +16,7 @@ export default function SignIn() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
+	const [errorMessage, setErrorMessage] = useState('');
 
 	function submit(event) {
 		event.preventDefault();
@@ -26,7 +27,10 @@ export default function SignIn() {
 				localStorage.setItem('user', JSON.stringify(res.data));
 				setIsLoading(false);
 				history.push("/");
-			}).catch(() => setIsLoading(false));
+			}).catch((err) => {
+				setErrorMessage(err.response.data);
+				setIsLoading(false);
+			});
 	}
 
 	return (
@@ -45,6 +49,9 @@ export default function SignIn() {
 					value={password}
 					onChange={e => setPassword(e.target.value)}
 				/>
+				{errorMessage && (
+					<span> {errorMessage} </span>
+				)}
 				<FormButton type="submit" isLoading={isLoading}>
 					Entrar
 				</FormButton>

@@ -5,6 +5,7 @@ import Form from '../../components/Form/Form';
 import ViewAuthentication from '../../components/ViewAuthentication';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
+import { postSignUp } from '../../services/api/api';
 
 export default function SignUp() {
 	const history = useHistory();
@@ -15,6 +16,8 @@ export default function SignUp() {
 		password: "",
 		confirmPassword: ""
 	});
+	const [isLoading, setIsLoading] = useState(false);
+	const [errorMessage, setErrorMessage] = useState('');
 
 	function handleChangeInputs(event) {
 		setInputFields({ ...inputFields, [event.target.name]: event.target.value });
@@ -22,6 +25,21 @@ export default function SignUp() {
 
 	function submit(event) {
 		event.preventDefault();
+		setIsLoading(true);
+		if (inputFields.password !== inputFields.confirmPassword) {
+			setErrorMessage("Senhas não combinam.");
+			setIsLoading(false);
+			return;
+		}
+		postSignUp(inputFields)
+			.then((res) => {
+				console.log(res);
+				history.push("/sign-in");
+			}).catch((err) => {
+				setIsLoading(false);
+				console.log(err.response)
+				setErrorMessage(err.response.data);
+			});
 	}
 
 	return (
@@ -29,13 +47,17 @@ export default function SignUp() {
 			<Form onSubmit={submit}>
 				<TitleMyWallet />
 				<Input
+					required
 					placeholder="Nome"
 					type="text"
 					name="name"
+					minLength={3}
+					maxLength={17}
 					value={inputFields.name}
 					onChange={handleChangeInputs}
 				/>
-				<Input
+				<Input 
+					required
 					placeholder="E-mail"
 					type="text"
 					name="email"
@@ -43,6 +65,7 @@ export default function SignUp() {
 					onChange={handleChangeInputs}
 				/>
 				<Input
+					required
 					placeholder="Senha"
 					type="password"
 					name="password"
@@ -50,13 +73,19 @@ export default function SignUp() {
 					onChange={handleChangeInputs}
 				/>
 				<Input
+					required
 					placeholder="Confirme a senha"
 					type="password"
 					name="confirmPassword"
 					value={inputFields.confirmPassword}
 					onChange={handleChangeInputs}
 				/>
-				<FormButton type="submit">Cadastrar</FormButton>
+				{errorMessage && (
+					<span> {errorMessage} </span>
+				)}
+				<FormButton type="submit" isLoading={isLoading}>
+					Cadastrar
+				</FormButton>
 				<p onClick={() => history.push("/sign-in")}>Já tem uma conta? Entre agora!</p>
 			</Form>
 		</ViewAuthentication>
