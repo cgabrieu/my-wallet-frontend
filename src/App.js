@@ -12,7 +12,7 @@ import './assets/styles/style.css';
 
 export default function App() {
 	const { user, logout } = useAuth();
-
+	//só pra testar cara
 	return (
 		<Router>
 			{!user ?
