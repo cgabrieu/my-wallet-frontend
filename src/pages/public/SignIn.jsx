@@ -9,7 +9,7 @@ import Form from '../../components/Form/Form';
 import ViewAuthentication from '../../components/ViewAuthentication';
 import { useAuth } from '../../contexts/AuthContext';
 import { postSignIn } from '../../services/api/api';
-import Logo from '../../components/Logo'
+import Logo from '../../components/Logo';
 import AlertContainer from '../../components/AlertContainer';
 
 export default function SignIn() {
@@ -32,7 +32,9 @@ export default function SignIn() {
     }
 
     if (!password.length) {
-      alert.show(<AlertContainer>Sua senha não pode ficar em branco</AlertContainer>);
+      alert.show(
+        <AlertContainer>Sua senha não pode ficar em branco</AlertContainer>
+      );
       return;
     }
 
@@ -54,20 +56,22 @@ export default function SignIn() {
     <ViewAuthentication>
       <Form onSubmit={submit}>
         <Logo />
-        <Input
-          placeholder="E-mail"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <Input
-          placeholder="Senha"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <FormButton type="submit" isLoading={isLoading}>
-          Entrar
-        </FormButton>
+        <div>
+          <Input
+            placeholder="E-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Input
+            placeholder="Senha"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <FormButton type="submit" isLoading={isLoading}>
+            Entrar
+          </FormButton>
+        </div>
         <p onClick={() => navigate('/sign-up')}>Primeira vez? Cadastre-se!</p>
       </Form>
     </ViewAuthentication>

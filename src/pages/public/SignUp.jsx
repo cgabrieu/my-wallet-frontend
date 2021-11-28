@@ -19,7 +19,6 @@ export default function SignUp() {
     confirmPassword: '',
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
 
   function handleChangeInputs(event) {
     setInputFields({ ...inputFields, [event.target.name]: event.target.value });
@@ -29,15 +28,15 @@ export default function SignUp() {
     event.preventDefault();
     setIsLoading(true);
     if (inputFields.password !== inputFields.confirmPassword) {
-      setErrorMessage('Senhas não combinam.');
+      // setErrorMessage('Senhas não combinam.');
       setIsLoading(false);
       return;
     }
     postSignUp(inputFields)
       .then(() => navigate('/sign-in'))
-      .catch((err) => {
+      .catch(() => {
         setIsLoading(false);
-        setErrorMessage(err.response.data);
+        // setErrorMessage(err.response.data);
       });
   }
 
@@ -45,45 +44,41 @@ export default function SignUp() {
     <ViewAuthentication>
       <Form onSubmit={submit}>
         <Logo />
-        <Input
-          placeholder="Nome"
-          type="text"
-          name="name"
-          minLength={3}
-          maxLength={17}
-          value={inputFields.name}
-          onChange={handleChangeInputs}
-        />
-        <Input
-          placeholder="E-mail"
-          type="text"
-          name="email"
-          onChange={handleChangeInputs}
-        />
-        <Input
-          placeholder="Senha"
-          type="password"
-          name="password"
-          value={inputFields.password}
-          onChange={handleChangeInputs}
-        />
-        <Input
-          placeholder="Confirme a senha"
-          type="password"
-          name="confirmPassword"
-          value={inputFields.confirmPassword}
-          onChange={handleChangeInputs}
-        />
-        {errorMessage && (
-        <span>
-          {' '}
-          {errorMessage}
-          {' '}
-        </span>
-        )}
-        <FormButton type="submit" isLoading={isLoading}>
-          Cadastrar
-        </FormButton>
+        <div>
+          <Input
+            placeholder="Nome"
+            type="text"
+            name="name"
+            minLength={3}
+            maxLength={17}
+            value={inputFields.name}
+            onChange={handleChangeInputs}
+          />
+          <Input
+            placeholder="E-mail"
+            type="text"
+            name="email"
+            onChange={handleChangeInputs}
+          />
+          <Input
+            placeholder="Senha"
+            type="password"
+            name="password"
+            value={inputFields.password}
+            onChange={handleChangeInputs}
+          />
+          <Input
+            placeholder="Confirme a senha"
+            type="password"
+            name="confirmPassword"
+            value={inputFields.confirmPassword}
+            onChange={handleChangeInputs}
+          />
+
+          <FormButton type="submit" isLoading={isLoading}>
+            Cadastrar
+          </FormButton>
+        </div>
         <p onClick={() => navigate('/sign-in')}>
           Já tem uma conta? Entre agora!
         </p>

@@ -12,6 +12,6 @@ export default function PageContainer({ children }) {
 const Container = styled.div`
   max-width: 450px;
   margin: 0 auto;
-  padding: 20px 15px 5px 15px;
+  padding: 25px 15px 5px 15px;
   height: 100%;
 `;

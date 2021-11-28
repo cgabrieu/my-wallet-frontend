@@ -57,28 +57,30 @@ export default function NewTransaction({ type }) {
     <View>
       <TitlePage>{`Nova ${type}`}</TitlePage>
       <Form onSubmit={submit}>
-        <NumberFormat
-          placeholder="Valor (R$)"
-          value={value}
-          customInput={Input}
-          maxLength="15"
-          prefix="R$ "
-          decimalScale={2}
-          decimalSeparator=","
-          thousandSeparator="."
-          fixedDecimalScale
-          onValueChange={(e) => setValue(e.floatValue)}
-        />
-        <Input
-          placeholder="Descrição"
-          type="text"
-          maxLength="20"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <FormButton type="submit" isLoading={isLoading}>
-          {`Salvar ${type}`}
-        </FormButton>
+        <div>
+          <NumberFormat
+            placeholder="Valor (R$)"
+            value={value}
+            customInput={Input}
+            maxLength="15"
+            prefix="R$ "
+            decimalScale={2}
+            decimalSeparator=","
+            thousandSeparator="."
+            fixedDecimalScale
+            onValueChange={(e) => setValue(e.floatValue)}
+          />
+          <Input
+            placeholder="Descrição"
+            type="text"
+            maxLength="20"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <FormButton type="submit" isLoading={isLoading}>
+            {`Salvar ${type}`}
+          </FormButton>
+        </div>
       </Form>
     </View>
   );

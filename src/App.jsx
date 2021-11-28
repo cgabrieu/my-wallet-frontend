@@ -19,11 +19,11 @@ const AnimatedSwitch = () => {
   const location = useLocation();
   return (
     <TransitionGroup>
-      <CSSTransition key={location.key} classNames="alert" timeout={300}>
+      <CSSTransition key={location.key} in classNames="alert" timeout={1000}>
         <Routes>
+          <Route path="*" element={<Navigate to="/" />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="*" element={<Navigate to="/" />} />
           <Route
             path="/"
             element={
