@@ -20,15 +20,16 @@ export default function Wallet() {
   const { user, logout } = useAuth();
 
   const [transactions, setTransactions] = useState([]);
+  const [render, setRender] = useState(false);
 
   useEffect(() => {
     getTransactions(user.token)
       .then((res) => setTransactions(res.data))
       .catch(() => logout());
-  }, []);
+  }, [render]);
 
   function removeTransaction(transactionId) {
-    deleteTransaction(user.token, transactionId)
+    deleteTransaction(user.token, transactionId).then(() => setRender(!render));
   }
 
   return (
