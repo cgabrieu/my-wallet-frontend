@@ -7,7 +7,6 @@ import {
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
-
 import PageContainer from '../../components/PageContainer';
 import TitlePage from '../../components/TitlePage';
 import Button from '../../components/Button';
@@ -31,9 +30,7 @@ export default function Wallet() {
   return (
     <PageContainer>
       <TitlePage>
-        Olá, 
-        {' '}
-        {user.name}
+        {`Olá, ${user.name}`}
         <IoMdExit onClick={() => logout()} />
       </TitlePage>
       <LogsContainer>
