@@ -1,6 +1,11 @@
 import axios from "axios";
 
-const BASE_URL = 'http://localhost:4000/api';
+const api = axios.create({
+  baseURL:
+    process.env.NODE_ENV === 'production'
+      ? 'https://gratibox-b.herokuapp.com'
+      : 'http://localhost:4000',
+});
 
 function getConfig(token) {
   return {
@@ -11,22 +16,22 @@ function getConfig(token) {
 }
 
 export function postSignIn(email, password) {
-  return axios.post(BASE_URL + '/auth/signin', {
+  return api.post('/auth/signin', {
     email,
     password
   });
 }
 
 export function postSignUp(inputFields) {
-  return axios.post(BASE_URL + '/auth/signup', inputFields);
+  return api.post('/auth/signup', inputFields);
 }
 
 export function getTransactions(token) {
-  return axios.get(BASE_URL + '/transactions', getConfig(token));
+  return api.get('/transactions', getConfig(token));
 }
 
 export function postNewTransaction(value, description, token) {
-  return axios.post(BASE_URL + '/transactions', {
+  return api.post('/transactions', {
     description,
     value
   }, getConfig(token));
