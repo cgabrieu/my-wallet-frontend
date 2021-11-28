@@ -5,6 +5,7 @@ import {
   IoIosRemoveCircleOutline,
 } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
+import ReactTooltip from 'react-tooltip';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import PageContainer from '../../components/PageContainer';
@@ -21,6 +22,9 @@ export default function Wallet() {
 
   const [transactions, setTransactions] = useState([]);
   const [render, setRender] = useState(false);
+  const [transactionId, setTransactionId] = useState(null);
+
+  // console.log(transactionId);
 
   useEffect(() => {
     getTransactions(user.token)
@@ -28,7 +32,8 @@ export default function Wallet() {
       .catch(() => logout());
   }, [render]);
 
-  function removeTransaction(transactionId) {
+  // eslint-disable-next-line no-unused-vars
+  function removeTransaction() {
     deleteTransaction(user.token, transactionId).then(() => setRender(!render));
   }
 
@@ -38,12 +43,22 @@ export default function Wallet() {
         {`Olá, ${user.name}`}
         <IoMdExit onClick={() => logout()} />
       </TitlePage>
+      <ReactTooltip effect="solid" clickable>
+        <RemoveTransaction onClick={removeTransaction}>
+          Clique aqui para remover a transação
+        </RemoveTransaction>
+      </ReactTooltip>
       <LogsContainer>
         {transactions.length ? (
           <>
             <Content>
               {transactions.map((t) => (
-                <Item key={t.id} onClick={() => removeTransaction(t.id)}>
+                <Item
+                  key={t.id}
+                  data-tip
+                  data-event="click"
+                  onClick={() => setTransactionId(t.id)}
+                >
                   <div>
                     <span>{dayjs(t.createdAt).format('DD/MM')}</span>
                     <h4>{t.description}</h4>
@@ -84,6 +99,16 @@ export default function Wallet() {
     </PageContainer>
   );
 }
+
+const RemoveTransaction = styled.h3`
+  display: flex;
+  align-items: center;
+  height: 50px;
+  font-size: 16px;
+  @media (max-width: 350px) {
+    font-size: 12px;
+  }
+`;
 
 const ButtonContainer = styled.div`
   height: 19vh;
@@ -140,6 +165,10 @@ const Content = styled.ul`
 `;
 
 const Item = styled.li`
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  cursor: pointer;
   span {
     margin-right: 10px;
     color: #c6c6c6;
@@ -151,9 +180,6 @@ const Item = styled.li`
     text-overflow: ellipsis;
     width: calc(70%);
   }
-  display: flex;
-  margin-bottom: 20px;
-  justify-content: space-between;
 `;
 
 const Valor = styled.b`
