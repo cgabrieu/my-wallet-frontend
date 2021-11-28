@@ -30,7 +30,11 @@ export default function NewTransaction({ type }) {
   function submit(event) {
     event.preventDefault();
     if (value <= 0) {
-      alert('O valor precisa ser maior que zero.');
+      alert.show('O valor precisa ser maior que zero');
+      return;
+    }
+    if (description.length < 3) {
+      alert.show('Digite uma descrição válida');
       return;
     }
     setIsLoading(true);

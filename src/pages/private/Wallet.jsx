@@ -5,7 +5,6 @@ import {
   IoIosRemoveCircleOutline,
 } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
-import ReactTooltip from 'react-tooltip';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import PageContainer from '../../components/PageContainer';
@@ -34,25 +33,12 @@ export default function Wallet() {
     deleteTransaction(user.token, transactionId).then(() => setRender(!render));
   }
 
-  setTimeout(ReactTooltip.rebuild(), 200);
-
   return (
     <PageContainer>
       <TitlePage>
         {`Olá, ${user.name}`}
         <IoMdExit onClick={() => logout()} />
       </TitlePage>
-      <ReactTooltip
-        effect="solid"
-        border
-        borderColor="darkblue"
-        delayHide={1000}
-        clickable
-      >
-        <RemoveTransaction onClick={removeTransaction}>
-          Clique aqui para remover a transação
-        </RemoveTransaction>
-      </ReactTooltip>
       <LogsContainer>
         {transactions.length ? (
           <>
