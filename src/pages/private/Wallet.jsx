@@ -30,7 +30,11 @@ export default function Wallet() {
       .catch(() => logout());
   }, [render]);
 
-  function removeTransaction() {
+  console.log(transactionId);
+
+  function removeTransaction(e) {
+    e.stopPropagation();
+    console.log('vai apagar:', transactionId);
     deleteTransaction(user.token, transactionId).then(() => setRender(!render));
   }
 
@@ -43,7 +47,6 @@ export default function Wallet() {
         <IoMdExit onClick={() => logout()} />
       </TitlePage>
       <ReactTooltip
-        id="remove-transaction"
         effect="solid"
         border
         borderColor="darkblue"
@@ -61,8 +64,6 @@ export default function Wallet() {
                 <Item
                   key={t.id}
                   data-tip
-                  data-for="remove-transaction"
-                  data-event="click"
                   onClick={() => setTransactionId(t.id)}
                 >
                   <div>
