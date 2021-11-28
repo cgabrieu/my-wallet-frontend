@@ -13,20 +13,25 @@ import TitlePage from '../../components/TitlePage';
 import Button from '../../components/Button';
 import { getTransactions } from '../../services/api/api';
 import { formatBRL } from '../../utils/formatCurrencies';
+import { useAuth } from '../../contexts/AuthContext';
 
-export default function Wallet({ user, logout }) {
+export default function Wallet() {
   const navigate = useNavigate();
+
+  const { user, logout } = useAuth();
 
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
-    getTransactions(user.token).then((res) => setTransactions(res.data));
+    getTransactions(user.token)
+      .then((res) => setTransactions(res.data))
+      .catch(() => logout());
   }, []);
 
   return (
     <PageContainer>
       <TitlePage>
-        Olá,
+        Olá, 
         {' '}
         {user.name}
         <IoMdExit onClick={() => logout()} />
@@ -53,7 +58,7 @@ export default function Wallet({ user, logout }) {
               <b>SALDO</b>
               <span>
                 {formatBRL(
-                  transactions.map((t) => t.value).reduce((a, b) => a + b),
+                  transactions.map((t) => t.value).reduce((a, b) => a + b)
                 )}
               </span>
             </WalletBalance>

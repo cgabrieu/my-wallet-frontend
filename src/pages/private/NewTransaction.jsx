@@ -7,14 +7,17 @@ import Input from '../../components/Form/Input';
 import Form from '../../components/Form/Form';
 import { formatBRLInput } from '../../utils/formatCurrencies';
 import { postNewTransaction } from '../../services/api/api';
+import { useAuth } from '../../contexts/AuthContext';
 
-export default function NewTransaction({ user, type }) {
+export default function NewTransaction({ type }) {
   const [value, setValue] = useState('');
   const [description, setDescription] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   const navigate = useNavigate();
+
+  const { user, logout } = useAuth();
 
   const formatTransactionValue = (transactionValue) => {
     const clearValue = transactionValue
@@ -37,7 +40,10 @@ export default function NewTransaction({ user, type }) {
         setIsLoading(false);
         navigate('/');
       })
-      .catch(() => setIsLoading(false));
+      .catch(() => {
+        setIsLoading(false);
+        logout();
+      });
   }
 
   return (
