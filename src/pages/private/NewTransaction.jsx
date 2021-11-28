@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NumberFormat from 'react-number-format';
+import { useAlert } from 'react-alert';
 import View from '../../components/View';
 import TitlePage from '../../components/TitlePage';
 import FormButton from '../../components/Form/FormButton';
@@ -17,6 +18,8 @@ export default function NewTransaction({ type }) {
   const [errorMessage, setErrorMessage] = useState('');
 
   const navigate = useNavigate();
+
+  const alert = useAlert();
 
   const { user, logout } = useAuth();
 
@@ -35,6 +38,7 @@ export default function NewTransaction({ type }) {
     postNewTransaction(formatTypeValue(), description, user.token)
       .then(() => {
         setIsLoading(false);
+        alert.show('Criado!');
         navigate('/');
       })
       .catch(() => {
