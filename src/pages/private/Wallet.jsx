@@ -10,7 +10,7 @@ import dayjs from 'dayjs';
 import PageContainer from '../../components/PageContainer';
 import TitlePage from '../../components/TitlePage';
 import Button from '../../components/Button';
-import { getTransactions } from '../../services/api/api';
+import { deleteTransaction, getTransactions } from '../../services/api/api';
 import formatBRL from '../../utils/formatCurrencies';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -27,6 +27,10 @@ export default function Wallet() {
       .catch(() => logout());
   }, []);
 
+  function removeTransaction(transactionId) {
+    deleteTransaction(user.token, transactionId)
+  }
+
   return (
     <PageContainer>
       <TitlePage>
@@ -38,7 +42,7 @@ export default function Wallet() {
           <>
             <Content>
               {transactions.map((t) => (
-                <Item key={t.id}>
+                <Item key={t.id} onClick={() => removeTransaction(t.id)}>
                   <div>
                     <span>{dayjs(t.createdAt).format('DD/MM')}</span>
                     <h4>{t.description}</h4>
