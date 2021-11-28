@@ -30,22 +30,29 @@ export default function Wallet() {
       .catch(() => logout());
   }, [render]);
 
-  // eslint-disable-next-line no-unused-vars
   function removeTransaction() {
     deleteTransaction(user.token, transactionId).then(() => setRender(!render));
   }
 
+  setTimeout(ReactTooltip.rebuild(), 200);
+
   return (
     <PageContainer>
-      <ReactTooltip clickable>
-        <RemoveTransaction id='removeTransactionTip' onClick={removeTransaction}>
-          Clique aqui para remover a transação
-        </RemoveTransaction>
-      </ReactTooltip>
       <TitlePage>
         {`Olá, ${user.name}`}
         <IoMdExit onClick={() => logout()} />
       </TitlePage>
+      <ReactTooltip
+        id="remove-transaction"
+        effect="solid"
+        border
+        borderColor="darkblue"
+        clickable
+      >
+        <RemoveTransaction onClick={removeTransaction}>
+          Clique aqui para remover a transação
+        </RemoveTransaction>
+      </ReactTooltip>
       <LogsContainer>
         {transactions.length ? (
           <>
@@ -54,7 +61,7 @@ export default function Wallet() {
                 <Item
                   key={t.id}
                   data-tip
-                  data-for='removeTransactionTip' 
+                  data-for="remove-transaction"
                   data-event="click"
                   onClick={() => setTransactionId(t.id)}
                 >
@@ -104,6 +111,7 @@ const RemoveTransaction = styled.h3`
   align-items: center;
   height: 50px;
   font-size: 16px;
+  cursor: pointer;
   @media (max-width: 350px) {
     font-size: 12px;
   }
