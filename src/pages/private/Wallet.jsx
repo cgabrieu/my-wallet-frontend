@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   IoMdExit,
   IoIosAddCircleOutline,
   IoIosRemoveCircleOutline,
-} from "react-icons/io";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import dayjs from "dayjs";
+} from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import dayjs from 'dayjs';
 
-import PageContainer from "../../components/PageContainer";
-import TitlePage from "../../components/TitlePage";
-import Button from "../../components/Button";
-import { getTransactions } from "../../services/api/api";
-import { formatBRL } from "../../utils/formatCurrencies";
+import PageContainer from '../../components/PageContainer';
+import TitlePage from '../../components/TitlePage';
+import Button from '../../components/Button';
+import { getTransactions } from '../../services/api/api';
+import { formatBRL } from '../../utils/formatCurrencies';
 
 export default function Wallet({ user, logout }) {
   const navigate = useNavigate();
@@ -26,7 +26,9 @@ export default function Wallet({ user, logout }) {
   return (
     <PageContainer>
       <TitlePage>
-        Olá, {user.name}
+        Olá,
+        {' '}
+        {user.name}
         <IoMdExit onClick={() => logout()} />
       </TitlePage>
       <LogsContainer>
@@ -36,7 +38,7 @@ export default function Wallet({ user, logout }) {
               {transactions.map((t) => (
                 <Item key={t.id}>
                   <div>
-                    <span>{dayjs(t.createdAt).format("DD/MM")}</span>
+                    <span>{dayjs(t.createdAt).format('DD/MM')}</span>
                     <h4>{t.description}</h4>
                   </div>
                   <Valor positive={t.value > 0}>{formatBRL(t.value)}</Valor>
@@ -51,7 +53,7 @@ export default function Wallet({ user, logout }) {
               <b>SALDO</b>
               <span>
                 {formatBRL(
-                  transactions.map((t) => t.value).reduce((a, b) => a + b)
+                  transactions.map((t) => t.value).reduce((a, b) => a + b),
                 )}
               </span>
             </WalletBalance>
@@ -63,11 +65,11 @@ export default function Wallet({ user, logout }) {
         )}
       </LogsContainer>
       <ButtonContainer>
-        <WalletButton onClick={() => navigate("/new-input")}>
+        <WalletButton onClick={() => navigate('/new-input')}>
           <IoIosAddCircleOutline />
           Nova entrada
         </WalletButton>
-        <WalletButton onClick={() => navigate("/new-output")}>
+        <WalletButton onClick={() => navigate('/new-output')}>
           <IoIosRemoveCircleOutline />
           Nova saída
         </WalletButton>
@@ -148,7 +150,7 @@ const Item = styled.li`
 `;
 
 const Valor = styled.b`
-  color: ${(props) => (props.positive ? "#03AC00" : "#C70000")};
+  color: ${(props) => (props.positive ? '#03AC00' : '#C70000')};
 `;
 
 const WalletBalance = styled.div`
@@ -160,7 +162,7 @@ const WalletBalance = styled.div`
     font-weight: bold;
   }
   span {
-    color: ${(props) => (props.positive ? "#03AC00" : "#C70000")};
+    color: ${(props) => (props.positive ? '#03AC00' : '#C70000')};
     font-weight: bold;
   }
 `;
