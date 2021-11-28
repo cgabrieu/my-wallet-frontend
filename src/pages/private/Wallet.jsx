@@ -30,11 +30,7 @@ export default function Wallet() {
       .catch(() => logout());
   }, [render]);
 
-  console.log(transactionId);
-
-  function removeTransaction(e) {
-    e.stopPropagation();
-    console.log('vai apagar:', transactionId);
+  function removeTransaction() {
     deleteTransaction(user.token, transactionId).then(() => setRender(!render));
   }
 
@@ -50,6 +46,7 @@ export default function Wallet() {
         effect="solid"
         border
         borderColor="darkblue"
+        delayHide={1000}
         clickable
       >
         <RemoveTransaction onClick={removeTransaction}>
