@@ -9,12 +9,12 @@
 
 body {
   background-image: linear-gradient(0deg,#0734bb,#0e2c4e,#0734bb,#0e2c4e);
-  background-size: 400% 400%;
+  background-size: 100% 300%;
   font-family: 'Raleway', sans-serif;
-  -webkit-animation: BackgroundAnimation 25s linear infinite;
-  -moz-animation: BackgroundAnimation 25s linear infinite;
-  -o-animation: BackgroundAnimation 25s linear infinite;
-  animation: BackgroundAnimation 25s linear infinite;
+  -webkit-animation: BackgroundAnimation 14s linear infinite;
+  -moz-animation: BackgroundAnimation 14s linear infinite;
+  -o-animation: BackgroundAnimation 14s linear infinite;
+  animation: BackgroundAnimation 14s linear infinite;
 }
 
 @keyframes BackgroundAnimation {
