@@ -15,7 +15,6 @@ export default function NewTransaction({ type }) {
   const [value, setValue] = useState('');
   const [description, setDescription] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
 
   const navigate = useNavigate();
 
@@ -30,15 +29,14 @@ export default function NewTransaction({ type }) {
 
   function submit(event) {
     event.preventDefault();
-    if (value === 0) {
-      setErrorMessage('O valor precisa ser maior que zero.');
+    if (value <= 0) {
+      alert('O valor precisa ser maior que zero.');
       return;
     }
     setIsLoading(true);
     postNewTransaction(formatTypeValue(), description, user.token)
       .then(() => {
         setIsLoading(false);
-        alert.show('Criado!');
         navigate('/');
       })
       .catch(() => {
@@ -70,7 +68,6 @@ export default function NewTransaction({ type }) {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        {errorMessage && <span>{errorMessage}</span>}
         <FormButton type="submit" isLoading={isLoading}>
           {`Salvar ${type}`}
         </FormButton>
