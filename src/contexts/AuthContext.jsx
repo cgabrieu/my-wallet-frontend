@@ -1,17 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-no-constructed-context-values */
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext({});
 
 function AuthProvider(props) {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const userLocal = localStorage.getItem("user");
-    if (!userLocal) return;
-    setUser(JSON.parse(userLocal));
-  }, []);
+  const userLocal = localStorage.getItem("user");
+  const [user, setUser] = useState(JSON.parse(userLocal));
 
   const logout = () => {
     setUser(null);
