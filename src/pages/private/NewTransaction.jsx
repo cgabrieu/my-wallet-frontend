@@ -47,6 +47,7 @@ export default function NewTransaction({ type }) {
         navigate('/');
       })
       .catch(() => {
+        alert.error(<AlertContainer>Ocorreu um erro :(</AlertContainer>);
         setIsLoading(false);
         logout();
       });

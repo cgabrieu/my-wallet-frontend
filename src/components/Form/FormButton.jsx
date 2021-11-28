@@ -5,7 +5,7 @@ import Button from '../Button';
 
 export default function FormButton ({ isLoading = false, children, ...props }) {
   return (
-    <Button {...props}>
+    <Button {...props} disabled={isLoading}>
       {
         (isLoading === true)
          ? <Loader type="ThreeDots" color="#000" height={15} width={50} />

@@ -9,7 +9,7 @@ export default styled.div`
   font-size: 18px;
   cursor: pointer;
   text-transform: initial;
-  height: 80px;
+  height: 60px;
   > button {
     margin-top: 10px;
     border: none;
