@@ -55,7 +55,6 @@ export default function NewTransaction({ type }) {
       </TitlePage>
       <Form onSubmit={submit}>
         <Input
-          required
           placeholder="Valor"
           type="text"
           maxLength="13"
@@ -63,7 +62,6 @@ export default function NewTransaction({ type }) {
           onChange={(e) => setValue(e.target.value)}
         />
         <Input
-          required
           placeholder="Descrição"
           type="text"
           maxLength="20"

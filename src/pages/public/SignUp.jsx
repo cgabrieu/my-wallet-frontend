@@ -46,7 +46,6 @@ export default function SignUp() {
       <Form onSubmit={submit}>
         <TitleMyWallet />
         <Input
-          required
           placeholder="Nome"
           type="text"
           name="name"
@@ -56,14 +55,12 @@ export default function SignUp() {
           onChange={handleChangeInputs}
         />
         <Input
-          required
           placeholder="E-mail"
           type="text"
           name="email"
           onChange={handleChangeInputs}
         />
         <Input
-          required
           placeholder="Senha"
           type="password"
           name="password"
@@ -71,7 +68,6 @@ export default function SignUp() {
           onChange={handleChangeInputs}
         />
         <Input
-          required
           placeholder="Confirme a senha"
           type="password"
           name="confirmPassword"
