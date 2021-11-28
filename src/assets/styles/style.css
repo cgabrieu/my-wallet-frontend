@@ -4,14 +4,20 @@
   box-sizing: border-box;
   transition: all ease .2s;
   font-family: 'Raleway', sans-serif;
-}
-
-body {
-  background-color: #8C11BE;
-  font-family: 'Raleway', sans-serif;
   /* font-family: 'Saira Stencil One', cursive; */
 }
 
-#root {
-  min-height: 100vh;
+body {
+  background-image: linear-gradient(0deg,#0734bb,#0e2c4e,#0734bb,#0e2c4e);
+  background-size: 100% 300%;
+  font-family: 'Raleway', sans-serif;
+  -webkit-animation: BackgroundAnimation 14s linear infinite;
+  -moz-animation: BackgroundAnimation 14s linear infinite;
+  -o-animation: BackgroundAnimation 14s linear infinite;
+  animation: BackgroundAnimation 14s linear infinite;
+}
+
+@keyframes BackgroundAnimation {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 0% 100%; }
 }

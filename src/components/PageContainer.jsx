@@ -9,7 +9,6 @@ export default function PageContainer({ children }) {
   )
 }
 
-
 const Container = styled.div`
   max-width: 450px;
   margin: 0 auto;

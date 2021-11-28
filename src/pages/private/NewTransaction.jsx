@@ -1,11 +1,12 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import NumberFormat from 'react-number-format';
 import View from '../../components/View';
 import TitlePage from '../../components/TitlePage';
 import FormButton from '../../components/Form/FormButton';
 import Input from '../../components/Form/Input';
 import Form from '../../components/Form/Form';
-import { formatBRLInput } from '../../utils/formatCurrencies';
 import { postNewTransaction } from '../../services/api/api';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -19,23 +20,19 @@ export default function NewTransaction({ type }) {
 
   const { user, logout } = useAuth();
 
-  const formatTransactionValue = (transactionValue) => {
-    const clearValue = transactionValue
-      .replace('R$ ', '')
-      .replaceAll('.', '')
-      .replaceAll(',', '');
-    if (type === 'Entrada') return Number(clearValue);
-    return Number(clearValue) * -1;
+  const formatTypeValue = () => {
+    if (type === 'Saída') return (value * -1);
+    return value;
   };
 
   function submit(event) {
     event.preventDefault();
-    if (formatTransactionValue(value) === 0) {
+    if (value === 0) {
       setErrorMessage('O valor precisa ser maior que zero.');
       return;
     }
     setIsLoading(true);
-    postNewTransaction(formatTransactionValue(value), description, user.token)
+    postNewTransaction(formatTypeValue(), description, user.token)
       .then(() => {
         setIsLoading(false);
         navigate('/');
@@ -48,18 +45,19 @@ export default function NewTransaction({ type }) {
 
   return (
     <View>
-      <TitlePage>
-        Nova
-        {' '}
-        {type}
-      </TitlePage>
+      <TitlePage>{`Nova ${type}`}</TitlePage>
       <Form onSubmit={submit}>
-        <Input
-          placeholder="Valor"
-          type="text"
-          maxLength="13"
-          value={formatBRLInput(value)}
-          onChange={(e) => setValue(e.target.value)}
+        <NumberFormat
+          placeholder="Valor (R$)"
+          value={value}
+          customInput={Input}
+          maxLength="15"
+          prefix="R$ "
+          decimalScale={2}
+          decimalSeparator=","
+          thousandSeparator="."
+          fixedDecimalScale
+          onValueChange={(e) => setValue(e.floatValue)}
         />
         <Input
           placeholder="Descrição"
@@ -68,17 +66,9 @@ export default function NewTransaction({ type }) {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        {errorMessage && (
-        <span>
-          {' '}
-          {errorMessage}
-          {' '}
-        </span>
-        )}
+        {errorMessage && <span>{errorMessage}</span>}
         <FormButton type="submit" isLoading={isLoading}>
-          Salvar
-          {' '}
-          {type}
+          {`Salvar ${type}`}
         </FormButton>
       </Form>
     </View>

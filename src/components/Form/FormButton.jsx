@@ -8,7 +8,7 @@ export default function FormButton ({ isLoading = false, children, ...props }) {
     <Button {...props}>
       {
         (isLoading === true)
-         ? <Loader type="ThreeDots" color="#FFF" height={15} width={50} />
+         ? <Loader type="ThreeDots" color="#000" height={15} width={50} />
          : children
       }
     </Button>

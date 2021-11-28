@@ -7,12 +7,11 @@ import {
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
-
 import PageContainer from '../../components/PageContainer';
 import TitlePage from '../../components/TitlePage';
 import Button from '../../components/Button';
 import { getTransactions } from '../../services/api/api';
-import { formatBRL } from '../../utils/formatCurrencies';
+import formatBRL from '../../utils/formatCurrencies';
 import { useAuth } from '../../contexts/AuthContext';
 
 export default function Wallet() {
@@ -31,9 +30,7 @@ export default function Wallet() {
   return (
     <PageContainer>
       <TitlePage>
-        Olá, 
-        {' '}
-        {user.name}
+        {`Olá, ${user.name}`}
         <IoMdExit onClick={() => logout()} />
       </TitlePage>
       <LogsContainer>
