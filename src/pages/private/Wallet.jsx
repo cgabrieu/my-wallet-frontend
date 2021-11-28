@@ -24,8 +24,6 @@ export default function Wallet() {
   const [render, setRender] = useState(false);
   const [transactionId, setTransactionId] = useState(null);
 
-  // console.log(transactionId);
-
   useEffect(() => {
     getTransactions(user.token)
       .then((res) => setTransactions(res.data))
@@ -39,15 +37,15 @@ export default function Wallet() {
 
   return (
     <PageContainer>
+      <ReactTooltip clickable>
+        <RemoveTransaction id='removeTransactionTip' onClick={removeTransaction}>
+          Clique aqui para remover a transação
+        </RemoveTransaction>
+      </ReactTooltip>
       <TitlePage>
         {`Olá, ${user.name}`}
         <IoMdExit onClick={() => logout()} />
       </TitlePage>
-      <ReactTooltip effect="solid" clickable>
-        <RemoveTransaction onClick={removeTransaction}>
-          Clique aqui para remover a transação
-        </RemoveTransaction>
-      </ReactTooltip>
       <LogsContainer>
         {transactions.length ? (
           <>
@@ -56,6 +54,7 @@ export default function Wallet() {
                 <Item
                   key={t.id}
                   data-tip
+                  data-for='removeTransactionTip' 
                   data-event="click"
                   onClick={() => setTransactionId(t.id)}
                 >
