@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Field } from 'formik';
 
-export default styled.input`
+export default styled(Field)`
   border: 3px solid hsl(0, 0%, 80%);
   border-radius: 5px;
   width: 326px;
