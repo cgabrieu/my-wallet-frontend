@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import {
   IoMdExit,
@@ -7,21 +8,24 @@ import {
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
+import { useAlert } from 'react-alert';
 import PageContainer from '../../components/PageContainer';
 import TitlePage from '../../components/TitlePage';
 import Button from '../../components/Button';
 import { deleteTransaction, getTransactions } from '../../services/api/api';
 import formatBRL from '../../utils/formatCurrencies';
 import { useAuth } from '../../contexts/AuthContext';
+import AlertContainer from '../../components/AlertContainer';
 
 export default function Wallet() {
   const navigate = useNavigate();
 
   const { user, logout } = useAuth();
 
+  const alert = useAlert();
+
   const [transactions, setTransactions] = useState([]);
   const [render, setRender] = useState(false);
-  const [transactionId, setTransactionId] = useState(null);
 
   useEffect(() => {
     getTransactions(user.token)
@@ -29,8 +33,8 @@ export default function Wallet() {
       .catch(() => logout());
   }, [render]);
 
-  function removeTransaction() {
-    deleteTransaction(user.token, transactionId).then(() => setRender(!render));
+  function removeTransaction(id) {
+    deleteTransaction(user.token, id).then(() => setRender(!render));
   }
 
   return (
@@ -47,7 +51,22 @@ export default function Wallet() {
                 <Item
                   key={t.id}
                   data-tip
-                  onClick={() => setTransactionId(t.id)}
+                  onClick={() => {
+                    alert.show(
+                      <AlertContainer>
+                        <p>Remover essa transação?</p>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            removeTransaction(t.id);
+                            alert.removeAll();
+                          }}
+                        >
+                          Confirmar
+                        </button>
+                      </AlertContainer>
+                    );
+                  }}
                 >
                   <div>
                     <span>{dayjs(t.createdAt).format('DD/MM')}</span>
@@ -89,17 +108,6 @@ export default function Wallet() {
     </PageContainer>
   );
 }
-
-const RemoveTransaction = styled.h3`
-  display: flex;
-  align-items: center;
-  height: 50px;
-  font-size: 16px;
-  cursor: pointer;
-  @media (max-width: 350px) {
-    font-size: 12px;
-  }
-`;
 
 const ButtonContainer = styled.div`
   height: 19vh;

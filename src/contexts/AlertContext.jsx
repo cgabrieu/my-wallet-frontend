@@ -7,10 +7,6 @@ const options = {
   position: positions.BOTTOM_CENTER,
   timeout: 3000,
   transition: transitions.FADE,
-  containerStyle: {
-    marginBottom: '10px',
-    lineHeight: '20px',
-  }
 };
 
 export default function AlertsProvider({ children }) {
