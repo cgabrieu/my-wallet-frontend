@@ -12,7 +12,7 @@ import PageContainer from '../../components/PageContainer';
 import TitlePage from '../../components/TitlePage';
 import Button from '../../components/Button';
 import { getTransactions } from '../../services/api/api';
-import { formatBRL } from '../../utils/formatCurrencies';
+import formatBRL from '../../utils/formatCurrencies';
 import { useAuth } from '../../contexts/AuthContext';
 
 export default function Wallet() {
