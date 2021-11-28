@@ -40,3 +40,7 @@ export function postNewTransaction(value, description, token) {
     getConfig(token)
   );
 }
+
+export function deleteTransaction(token, transactionId) {
+  return api.delete(`/transactions/${transactionId}`, getConfig(token));
+}
