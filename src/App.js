@@ -7,6 +7,7 @@ import SignIn from "./pages/public/SignIn";
 import SignUp from "./pages/public/SignUp";
 import Wallet from "./pages/private/Wallet";
 import NewTransaction from "./pages/private/NewTransaction";
+import PrivateRoute from "./utils/PrivateRoute";
 
 export default function App() {
   const { user, logout } = useAuth();

@@ -3,7 +3,7 @@ import axios from "axios";
 const api = axios.create({
   baseURL:
     process.env.NODE_ENV === "production"
-      ? "https://gratibox-b.herokuapp.com"
+      ? "https://mywallet-cgabrieu.herokuapp.com"
       : "http://localhost:4000",
 });
 
@@ -16,14 +16,14 @@ function getConfig(token) {
 }
 
 export function postSignIn(email, password) {
-  return api.post("/auth/signin", {
+  return api.post("/auth/sign-in", {
     email,
     password,
   });
 }
 
 export function postSignUp(inputFields) {
-  return api.post("/auth/signup", inputFields);
+  return api.post("/auth/sign-up", inputFields);
 }
 
 export function getTransactions(token) {
