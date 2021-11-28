@@ -17,6 +17,7 @@ export default styled.input`
   }
 
   &::placeholder {
-    color: black;
+    color: #2e2e2e;
+    font-weight: 400;
   }
 `;

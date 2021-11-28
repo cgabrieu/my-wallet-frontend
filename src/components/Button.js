@@ -5,7 +5,7 @@ export default styled.button`
   border: none;
   padding: 16px;
   background-color: #fff;
-  color: #000;
+  color: #2e2e2e;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
