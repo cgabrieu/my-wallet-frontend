@@ -4,8 +4,8 @@ export default styled.button`
   width: 326px;
   border: none;
   padding: 16px;
-  background-color: #A328D6;
-  color: #FFF;
+  background-color: #fff;
+  color: #000;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;

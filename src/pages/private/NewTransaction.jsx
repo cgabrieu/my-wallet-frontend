@@ -40,7 +40,8 @@ export default function NewTransaction({ type }) {
         setIsLoading(false);
         navigate('/');
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err);
         setIsLoading(false);
         logout();
       });

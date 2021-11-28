@@ -7,11 +7,33 @@
 }
 
 body {
-  background-color: #8C11BE;
+  background: linear-gradient(0deg, #193ded, #386ce5);
+  background-size: 300% 300%;
   font-family: 'Raleway', sans-serif;
   /* font-family: 'Saira Stencil One', cursive; */
+  -webkit-animation: BackgroundAnimation 5s ease infinite;
+  -moz-animation: BackgroundAnimation 5s ease infinite;
+  -o-animation: BackgroundAnimation 5s ease infinite;
+  animation: BackgroundAnimation 5s ease infinite;
 }
 
-#root {
-  min-height: 100vh;
+@-webkit-keyframes BackgroundAnimation {
+  0%{background-position:50% 0%}
+  50%{background-position:50% 100%}
+  100%{background-position:50% 0%}
+}
+@-moz-keyframes BackgroundAnimation {
+  0%{background-position:50% 0%}
+  50%{background-position:50% 100%}
+  100%{background-position:50% 0%}
+}
+@-o-keyframes BackgroundAnimation {
+  0%{background-position:50% 0%}
+  50%{background-position:50% 100%}
+  100%{background-position:50% 0%}
+}
+@keyframes BackgroundAnimation {
+  0%{background-position:50% 0%}
+  50%{background-position:50% 100%}
+  100%{background-position:50% 0%}
 }
