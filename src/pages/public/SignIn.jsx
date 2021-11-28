@@ -4,11 +4,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../../components/Form/Input';
 import FormButton from '../../components/Form/FormButton';
-import TitleMyWallet from '../../components/TitleMyWallet';
 import Form from '../../components/Form/Form';
 import ViewAuthentication from '../../components/ViewAuthentication';
 import { useAuth } from '../../contexts/AuthContext';
 import { postSignIn } from '../../services/api/api';
+import Logo from '../../components/Logo';
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ export default function SignIn() {
   return (
     <ViewAuthentication>
       <Form onSubmit={submit}>
-        <TitleMyWallet />
+        <Logo />
         <Input
           placeholder="E-mail"
           type="email"
