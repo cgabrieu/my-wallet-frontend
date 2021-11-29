@@ -1,25 +1,25 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+/* eslint-disable no-undef */
+Cypress.Commands.add('signUp', (name, email, password) => {
+  cy.visit('http://localhost:3000/sign-up');
+
+  cy.get('input[placeholder="Nome"]').type(name);
+  cy.get('input[placeholder="E-mail"]').type(email);
+  cy.get('input[placeholder="Senha"]').type(password);
+  cy.get('input[placeholder="Confirme a senha"]').type(password);
+
+  cy.get('button').click();
+});
+
+Cypress.Commands.add('signIn', (email, password) => {
+  cy.visit('http://localhost:3000/sign-in');
+
+  cy.get('input[placeholder="E-mail"]').type(email);
+  cy.get('input[placeholder="Senha"]').type(password);
+
+  cy.get('button').click();
+});
+
+Cypress.Commands.add('addTransaction', (name, email, password) => {
+  cy.signUp(name, email, password);
+  cy.login(email, password);
+});

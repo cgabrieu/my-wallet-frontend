@@ -2,7 +2,7 @@
 /// <reference types="cypress" />
 import faker from 'faker';
 
-describe('Sign up', () => {
+describe('Sign-up', () => {
   it('should be able to access signUp page', () => {
     cy.visit('http://localhost:3000');
     cy.get('p').contains('Primeira vez? Cadastre-se!').click();
@@ -17,11 +17,11 @@ describe('Sign up', () => {
     cy.url().should('equal', 'http://localhost:3000/sign-in');
   });
 
-  it('should have 4 input fields and "Entrar" button', () => {
+  it('should have 4 input fields and "Cadastrar" button', () => {
     cy.visit('http://localhost:3000/sign-up');
 
     cy.get('input').should('have.length', 4);
-    cy.get('button').should('have.length', 1);
+    cy.get('button').should('have.text', 'Cadastrar');
   });
 
   it('should receive a popup when empty name', () => {
