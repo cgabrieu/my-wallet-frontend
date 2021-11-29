@@ -5,4 +5,5 @@ export default styled.main`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	animation: customTransaction .7s
 `;
