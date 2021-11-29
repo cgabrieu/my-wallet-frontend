@@ -57,4 +57,12 @@ describe('Sign-in', () => {
       expect(localStorage.getItem('user')).to.exist()
     });
   });
+
+  it('should be able to logout session', () => {
+    cy.visit('http://localhost:3000/');
+
+    cy.get('svg').click();
+
+    cy.url().should('include', '/sign-in');
+  });
 });
