@@ -2,15 +2,19 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAlert } from 'react-alert';
 import Input from '../../components/Form/Input';
 import FormButton from '../../components/Form/FormButton';
 import Form from '../../components/Form/Form';
 import ViewAuthentication from '../../components/ViewAuthentication';
 import { postSignUp } from '../../services/api/api';
 import Logo from '../../components/Logo';
+import AlertContainer from '../../components/AlertContainer';
 
 export default function SignUp() {
   const navigate = useNavigate();
+
+  const alert = useAlert();
 
   const [inputFields, setInputFields] = useState({
     name: '',
@@ -26,17 +30,28 @@ export default function SignUp() {
 
   function submit(event) {
     event.preventDefault();
-    setIsLoading(true);
-    if (inputFields.password !== inputFields.confirmPassword) {
-      // setErrorMessage('Senhas não combinam.');
-      setIsLoading(false);
+    if (inputFields.email.length < 5 || !inputFields.email.match(/@/)) {
+      alert.show(<AlertContainer>Insira um e-mail válido</AlertContainer>);
       return;
     }
+    if (inputFields.password.length < 8) {
+      alert.show(<AlertContainer>Digite uma senha mais forte</AlertContainer>);
+      return;
+    }
+    if (inputFields.name.length < 3) {
+      alert.show(<AlertContainer>Insira um nome válido</AlertContainer>);
+      return;
+    }
+    if (inputFields.password !== inputFields.confirmPassword) {
+      alert.show(<AlertContainer>As senhas não combinam</AlertContainer>);
+      return;
+    }
+    setIsLoading(true);
     postSignUp(inputFields)
       .then(() => navigate('/sign-in'))
       .catch(() => {
         setIsLoading(false);
-        // setErrorMessage(err.response.data);
+        alert.error(<AlertContainer>Problema de conexão, tente novamente mais tarde</AlertContainer>);
       });
   }
 
@@ -49,7 +64,6 @@ export default function SignUp() {
             placeholder="Nome"
             type="text"
             name="name"
-            minLength={3}
             maxLength={17}
             value={inputFields.name}
             onChange={handleChangeInputs}
