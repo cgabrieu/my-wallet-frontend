@@ -19,7 +19,7 @@ Cypress.Commands.add('signIn', (email, password) => {
   cy.get('button').click();
 });
 
-Cypress.Commands.add('addTransaction', (name, email, password) => {
+Cypress.Commands.add('transaction', (name, email, password) => {
   cy.signUp(name, email, password);
   cy.signIn(email, password);
 });

@@ -55,6 +55,6 @@ describe('Sign-in', () => {
     cy.wait(500);
     cy.url().should('include', '/', ()=> {
       expect(localStorage.getItem('user')).to.exist()
-  })
+    });
   });
 });
