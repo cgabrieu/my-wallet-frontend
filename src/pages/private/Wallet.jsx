@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import {
   IoMdExit,
@@ -5,24 +6,26 @@ import {
   IoIosRemoveCircleOutline,
 } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
-import ReactTooltip from 'react-tooltip';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
+import { useAlert } from 'react-alert';
 import PageContainer from '../../components/PageContainer';
 import TitlePage from '../../components/TitlePage';
 import Button from '../../components/Button';
 import { deleteTransaction, getTransactions } from '../../services/api/api';
 import formatBRL from '../../utils/formatCurrencies';
 import { useAuth } from '../../contexts/AuthContext';
+import AlertContainer from '../../components/AlertContainer';
 
 export default function Wallet() {
   const navigate = useNavigate();
 
   const { user, logout } = useAuth();
 
+  const alert = useAlert();
+
   const [transactions, setTransactions] = useState([]);
   const [render, setRender] = useState(false);
-  const [transactionId, setTransactionId] = useState(null);
 
   useEffect(() => {
     getTransactions(user.token)
@@ -30,18 +33,12 @@ export default function Wallet() {
       .catch(() => logout());
   }, [render]);
 
-  // eslint-disable-next-line no-unused-vars
-  function removeTransaction() {
-    deleteTransaction(user.token, transactionId).then(() => setRender(!render));
+  function removeTransaction(id) {
+    deleteTransaction(user.token, id).then(() => setRender(!render));
   }
 
   return (
     <PageContainer>
-      <ReactTooltip clickable>
-        <RemoveTransaction id='removeTransactionTip' onClick={removeTransaction}>
-          Clique aqui para remover a transação
-        </RemoveTransaction>
-      </ReactTooltip>
       <TitlePage>
         {`Olá, ${user.name}`}
         <IoMdExit onClick={() => logout()} />
@@ -54,9 +51,22 @@ export default function Wallet() {
                 <Item
                   key={t.id}
                   data-tip
-                  data-for='removeTransactionTip' 
-                  data-event="click"
-                  onClick={() => setTransactionId(t.id)}
+                  onClick={() => {
+                    alert.show(
+                      <AlertContainer>
+                        <p>Remover essa transação?</p>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            removeTransaction(t.id);
+                            alert.removeAll();
+                          }}
+                        >
+                          Confirmar
+                        </button>
+                      </AlertContainer>
+                    );
+                  }}
                 >
                   <div>
                     <span>{dayjs(t.createdAt).format('DD/MM')}</span>
@@ -99,16 +109,6 @@ export default function Wallet() {
   );
 }
 
-const RemoveTransaction = styled.h3`
-  display: flex;
-  align-items: center;
-  height: 50px;
-  font-size: 16px;
-  @media (max-width: 350px) {
-    font-size: 12px;
-  }
-`;
-
 const ButtonContainer = styled.div`
   height: 19vh;
   display: flex;
@@ -125,6 +125,8 @@ const WalletButton = styled(Button)`
   padding-right: 60px;
   text-align: left;
   border-radius: 5px;
+  background-color: #fff;
+  color: #000;
   svg {
     font-size: 25px;
   }
