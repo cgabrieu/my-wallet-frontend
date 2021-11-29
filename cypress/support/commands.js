@@ -21,5 +21,5 @@ Cypress.Commands.add('signIn', (email, password) => {
 
 Cypress.Commands.add('addTransaction', (name, email, password) => {
   cy.signUp(name, email, password);
-  cy.login(email, password);
+  cy.signIn(email, password);
 });
