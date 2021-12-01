@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+## My Wallet 👛
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
+  <a href="https://mywallet-cgabrieu.vercel.app/">
+    <img src="https://user-images.githubusercontent.com/25062334/144301107-9b86368f-6548-452b-8f82-37a70ca4fe98.gif">
+  </a>
+    <br />
+    <a href="https://mywallet-cgabrieu.vercel.app/">View the deploy</a>
+    <br />
+</div>
 
-## Available Scripts
+## Usage
 
-In the project directory, you can run:
+Users are able to `sign in` and manage their expenses.
+You can `add` and `remove` earnings and expenses.
 
-### `yarn start`
+Sign up and have `better control of your financial life`!
+  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Technologies
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Tools that were used in the project:
+<p>
+  <img src='https://img.shields.io/badge/React-000000?style=for-the-badge&logo=react&logoColor=white'>
+  <img src='https://img.shields.io/badge/styled--components-000000?style=for-the-badge&logo=styled-components&logoColor=white'>
+  <img src='https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white'>
+  <img src='https://img.shields.io/badge/Cypress-000000?style=for-the-badge&logo=cypress&logoColor=white'>
+  <img src='https://img.shields.io/badge/Heroku-000000?style=for-the-badge&logo=heroku&logoColor=white'>
+</p>
 
-### `yarn test`
+<!-- GETTING STARTED -->
+## Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To run locally follow the steps
 
-### `yarn build`
+### Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This is an example of how to list things you need to use the software and how to install them.
+* npm
+```sh
+npm install npm@latest -g
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Create the root folder named mywallet and access it
+```sh
+mkdir mywallet && cd mywallet
+```
+2. Clone the frontend repo
+```sh
+git clone https://github.com/cgabrieu/my-wallet-frontend.git
+```
+3. Install dependencies with npm
+```sh
+npm install
+```
+4. Clone the backend repo
+```sh
+git clone https://github.com/cgabrieu/my-wallet-backend.git
+```
+5. Install dependencies with npm
+```sh
+npm install
+```
+6. Create a database using the command below via postgres
+```sh
+CREATE DATABASE mywallet;
+```
+7. Automatically create all necessary tables with <a href="https://github.com/cgabrieu/my-wallet-backend/blob/main/dump.sql">dump</a>. to backend repo.
 
-### `yarn eject`
+8. Connect your backend to the database, for that, rename the .env.example to .env.dev and fill in your data.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### How to run
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Run the frontend using the command (remember to be on the backend repo): 
+```sh
+npm run start:dev
+```
+2. Run the frontend using the command (remember to be on the fronend repo): 
+```sh
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Developer
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* [Carlos Gabriel](https://github.com/cgabrieu)
