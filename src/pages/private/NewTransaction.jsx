@@ -25,7 +25,7 @@ export default function NewTransaction({ type }) {
 
   const formatTypeValue = () => {
     if (type === 'Saída') return value * -1;
-    return value;
+    return value * 100;
   };
 
   function submit(event) {
@@ -46,10 +46,10 @@ export default function NewTransaction({ type }) {
         setIsLoading(false);
         navigate('/');
       })
-      .catch(() => {
+      .catch((err) => {
         alert.error(<AlertContainer>Ocorreu um erro :(</AlertContainer>);
         setIsLoading(false);
-        logout();
+        if (err.response?.status === 401) logout();
       });
   }
 
