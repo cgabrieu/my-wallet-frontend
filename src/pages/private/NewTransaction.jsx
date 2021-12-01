@@ -24,7 +24,7 @@ export default function NewTransaction({ type }) {
   const { user, logout } = useAuth();
 
   const formatTypeValue = () => {
-    if (type === 'Saída') return value * -1;
+    if (type === 'Saída') return value * -100;
     return value * 100;
   };
 
