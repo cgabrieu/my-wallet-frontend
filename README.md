@@ -1,7 +1,7 @@
 ## My Wallet 👛
 
 <div align="center">
-  <h4>This is the frontend repo, access the backend repo <a href="https://mywallet-cgabrieu.vercel.app/">here</a>.</h4>
+  <h4>This is the frontend repo, access the backend repo <a href="https://github.com/cgabrieu/my-wallet-backend">here</a>.</h4>
   <a href="https://mywallet-cgabrieu.vercel.app/">
     <img src="https://user-images.githubusercontent.com/25062334/144301107-9b86368f-6548-452b-8f82-37a70ca4fe98.gif">
   </a>
@@ -26,7 +26,6 @@ Tools that were used in the project:
   <img src='https://img.shields.io/badge/npm-000000?style=for-the-badge&logo=npm&logoColor=white'>
   <img src='https://img.shields.io/badge/Cypress-000000?style=for-the-badge&logo=cypress&logoColor=white'>
   <img src='https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white'>
-  <img src='https://img.shields.io/badge/Heroku-000000?style=for-the-badge&logo=heroku&logoColor=white'>
 </p>
 
 <!-- GETTING STARTED -->
