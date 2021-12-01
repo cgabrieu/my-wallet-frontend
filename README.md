@@ -1,6 +1,7 @@
 ## My Wallet 👛
 
 <div align="center">
+  <h4>This is the frontend repo, access the backend repo <a href="https://mywallet-cgabrieu.vercel.app/">here</a>.</h4>
   <a href="https://mywallet-cgabrieu.vercel.app/">
     <img src="https://user-images.githubusercontent.com/25062334/144301107-9b86368f-6548-452b-8f82-37a70ca4fe98.gif">
   </a>
@@ -12,9 +13,7 @@
 ## Usage
 
 Users are able to `sign in` and manage their expenses.
-You can `add` and `remove` earnings and expenses.
-
-Sign up and have `better control of your financial life`!
+You can `add` and `remove` earnings and expenses. Sign up and have `better control of your financial life`!
   
 
 ## Technologies
@@ -23,8 +22,10 @@ Tools that were used in the project:
 <p>
   <img src='https://img.shields.io/badge/React-000000?style=for-the-badge&logo=react&logoColor=white'>
   <img src='https://img.shields.io/badge/styled--components-000000?style=for-the-badge&logo=styled-components&logoColor=white'>
-  <img src='https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white'>
+  <img src='https://img.shields.io/badge/eslint-000000?style=for-the-badge&logo=eslint&logoColor=white'>
+  <img src='https://img.shields.io/badge/npm-000000?style=for-the-badge&logo=npm&logoColor=white'>
   <img src='https://img.shields.io/badge/Cypress-000000?style=for-the-badge&logo=cypress&logoColor=white'>
+  <img src='https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white'>
   <img src='https://img.shields.io/badge/Heroku-000000?style=for-the-badge&logo=heroku&logoColor=white'>
 </p>
 
