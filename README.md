@@ -9,12 +9,15 @@
     <a href="https://mywallet-cgabrieu.vercel.app/">View the deploy</a>
     <br />
 </div>
+  
+<br/>
 
-## Usage
+## About
 
 Users are able to `sign in` and manage their expenses.
 You can `add` and `remove` earnings and expenses. Sign up and have `better control of your financial life`!
-  
+    
+<br/>
 
 ## Technologies
 
@@ -27,6 +30,8 @@ Tools that were used in the project:
   <img src='https://img.shields.io/badge/Cypress-000000?style=for-the-badge&logo=cypress&logoColor=white'>
   <img src='https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white'>
 </p>
+  
+<br/>
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -81,6 +86,8 @@ npm run start:dev
 ```sh
 npm start
 ```
+  
+<br/>
 
 ## Developer
 
