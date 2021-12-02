@@ -15,7 +15,8 @@
 ## About
 
 Users are able to `sign in` and manage their expenses.
-You can `add` and `remove` earnings and expenses. Sign up and have `better control of your financial life`!
+You can `add` and `remove` earnings and expenses.
+  Sign up and have `better control of your financial life`!
     
 <br/>
 
@@ -72,7 +73,7 @@ npm install
 ```sh
 CREATE DATABASE mywallet;
 ```
-7. Automatically create all necessary tables with <a href="https://github.com/cgabrieu/my-wallet-backend/blob/main/dump.sql">dump</a>. to backend repo.
+7. Automatically create all necessary tables to backend repo with <a href="https://github.com/cgabrieu/my-wallet-backend/blob/main/dump.sql">dump</a>.
 
 8. Connect your backend to the database, for that, rename the .env.example to .env.dev and fill in your data.
 
