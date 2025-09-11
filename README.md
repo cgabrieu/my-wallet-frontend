@@ -6,7 +6,7 @@
     <img src="https://user-images.githubusercontent.com/25062334/144301107-9b86368f-6548-452b-8f82-37a70ca4fe98.gif">
   </a>
     <br />
-    <a href="https://mywallet-cgabrieu.vercel.app/">View the deploy</a>
+    <a href="https://mywallet-cgabrieu.vercel.app/">View</a>
     <br />
 </div>
   
@@ -88,8 +88,3 @@ npm run start:dev
 npm start
 ```
   
-<br/>
-
-## Developer
-
-* [Carlos Gabriel](https://github.com/cgabrieu)
